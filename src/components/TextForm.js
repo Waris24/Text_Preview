@@ -5,13 +5,16 @@ export default function TextForm(props) {
     let newText = text.toUpperCase();
     setText(newText);
   };
+
   const handleOnChange = (event) => {
     setText(event.target.value);
   };
+
   const handleLpClick = () => {
     let newText = text.toLowerCase();
     setText(newText);
   };
+
   const handleClear = () => {
     let newText = "";
     setText(newText);
@@ -19,9 +22,43 @@ export default function TextForm(props) {
 
   const [text, setText] = useState("Enter text here..................");
 
+  const [myStyle, setStyle] = useState({
+    color: "black",
+    backgroundColor: "white",
+  });
+
+  const [btnText, setBtnText] = useState("Enable dark mode");
+
+  const toggleState = () => {
+    if (btnText === "Enable dark mode") {
+      setStyle({
+        color: "white",
+        backgroundColor: "black",
+        border: "2px solid black",
+      });
+      setBtnText("Enable white mode");
+    } else {
+      setStyle({
+        color: "black",
+        backgroundColor: "white",
+      });
+      setBtnText("Enable dark mode");
+    }
+  };
+
   return (
-    <>
-      <div className="container">
+    <div style={myStyle}>
+      <div className="container my-3">
+        <div className="form-check form-switch">
+          <input
+            className="form-check-input"
+            type="checkbox"
+            role="switch"
+            id="flexSwitchCheckDefault"
+            onClick={toggleState}
+          />
+          <label className="form-check-label">{btnText}</label>
+        </div>
         <h1>{props.heading}</h1>
         <div className="mb-3">
           <textarea
@@ -44,7 +81,7 @@ export default function TextForm(props) {
             Convert to LowerCase
           </button>
           <button
-            className="btn btn-primary mx-1"
+            className="btn btn-primary mx-1 my-1"
             type="submit"
             onClick={handleClear}
           >
@@ -62,6 +99,6 @@ export default function TextForm(props) {
           <p>{text}</p>
         </div>
       </div>
-    </>
+    </div>
   );
 }
