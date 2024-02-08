@@ -37,7 +37,11 @@ function App() {
         toggleMode={toggleMode}
       />
       <Alerts alert={alert} />
-      <TextForm showAlert={showAlert} heading="Enter the text to analysis" />
+      <TextForm
+        showAlert={showAlert}
+        heading="Enter the text to analysis"
+        mode={mode}
+      />
     </>
   );
 }
